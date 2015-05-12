@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">ToDoList</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <string-array name="lists">
+        <item>ToBye</item>
+        <item>Habit</item>
+        <item>ToRead</item>
+        <item>ToSee</item>
+        <item>ToDo</item>
+        <item>ToGet</item>
+        <item>WishList</item>
+        <item>Passwords</item>
+    </string-array>
+
+
+</resources>
