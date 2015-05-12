@@ -10,7 +10,6 @@
         <item>ToSee</item>
         <item>ToDo</item>
         <item>ToGet</item>
-        <item>WishList</item>
         <item>Passwords</item>
     </string-array>
     <string name="title_activity_bye">bye</string>

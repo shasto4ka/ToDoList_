@@ -23,6 +23,9 @@
         <activity
             android:name=".bye"
             android:label="@string/title_activity_bye" >
+            <meta-data
+                         android:name="android.support.PARENT_ACTIVITY"
+                         android:value="com.example.shasta.todolist.MainActivity" />
         </activity>
     </application>
 

@@ -1,5 +1,6 @@
 package com.example.shasta.todolist;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -22,7 +23,10 @@ import java.util.List;
  */
 public class Fragment1 extends Fragment {
 
-        ArrayAdapter<String> adapter;
+    ArrayAdapter<String> adapter;
+    private final String LOG_TAG = MainActivity.class.getSimpleName();
+
+
     public Fragment1() {
     }
     @Override
@@ -68,6 +72,23 @@ public class Fragment1 extends Fragment {
                 public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                     String forecast = adapter.getItem(position);
                     Toast.makeText(getActivity(), forecast, Toast.LENGTH_SHORT).show();
+                    Intent intent;
+/*                    switch (position) {
+                        case 0: {
+                            intent = new Intent(getActivity(), bye.class)
+                                    .putExtra(Intent.EXTRA_TEXT, forecast);
+                            break;
+                        }
+                        case 0: {
+                            intent = new Intent(getActivity(), bye.class)
+                                    .putExtra(Intent.EXTRA_TEXT, forecast);
+                            break;
+                        }
+
+                    }*/
+                    intent = new Intent(getActivity(), bye.class)
+                        .putExtra(Intent.EXTRA_TEXT, forecast);
+                    startActivity(intent) ;
                 }
             });
 
