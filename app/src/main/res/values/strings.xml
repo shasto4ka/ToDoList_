@@ -14,5 +14,9 @@
     </string-array>
     <string name="title_activity_bye">bye</string>
 
+    <string name="add_record">Add record</string>
+    <string name="delete_record">Delete record</string>
+    <string name="next_bye">Next bye</string>
+    <string name="priority">Priority</string>
 
 </resources>

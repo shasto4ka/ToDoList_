@@ -8,11 +8,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+
+import com.example.shasta.todolist.data.dbhelper;
 
 
 public class bye extends ActionBarActivity {
 
-    @Override
+    private dbhelper dh;
+    public EditText t1;
+
+
+       @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bye);
@@ -22,6 +29,7 @@ public class bye extends ActionBarActivity {
                     .commit();
         }
     }
+
 
 
     @Override
@@ -49,18 +57,14 @@ public class bye extends ActionBarActivity {
     /**
      * A placeholder fragment containing a simple view.
      */
-    public static class byeFragment extends Fragment {
+    public static  class byeFragment extends Fragment {
 
         public byeFragment() {
         }
-
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_bye, container, false);
-
-
-
 
             return rootView;
         }
