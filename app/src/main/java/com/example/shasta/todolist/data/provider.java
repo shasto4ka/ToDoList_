@@ -4,13 +4,14 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 
 public class provider{
     private dbhelper mdbhelper;
     private SQLiteDatabase mdb;
     private final Context mCtx;
 
-    public provider (Context ctx) {
+    public provider(Context ctx) {
         mCtx = ctx;
     }
     public void open() {
@@ -91,12 +92,37 @@ public class provider{
         cv.put(contract.passEntry.COLUMN_PASS , pass );
         mdb.insert(contract.passEntry.TABLE_NAME, null, cv);}
 
-
-
-
-
     public void delRec(long id) {
             mdb.delete(contract.ByeEntry.TABLE_NAME ,contract.ByeEntry._ID + " = " + id, null);
         }
+
+    private class DBHelper extends SQLiteOpenHelper {
+
+
+        public DBHelper(Context context, String name, SQLiteDatabase.CursorFactory factory,
+                        int version) {
+            super(context, name, factory, version);
+        }
+
+        // создаем и заполняем БД
+        @Override
+        public void onCreate(SQLiteDatabase db) {
+            mdbhelper.onCreate(db);
+
+        }
+
+        @Override
+        public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+           mdbhelper.onUpgrade(db,oldVersion,newVersion ) ;
+            onCreate(db);
+        }
+    }
+
+    public Cursor getTable(String tbl_name) {
+        String sqlQuery = "SELECT * FROM " + tbl_name + ";";
+        return mdb.rawQuery(sqlQuery, null);
+    }
+
+
 }
 

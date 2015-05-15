@@ -1,5 +1,7 @@
 package com.example.shasta.todolist;
 
+import android.content.ContentValues;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
@@ -8,18 +10,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
-import com.example.shasta.todolist.data.dbhelper;
-
+import com.example.shasta.todolist.data.contract;
+import com.example.shasta.todolist.data.provider;
 
 public class bye extends ActionBarActivity {
 
-    private dbhelper dh;
-    public EditText t1;
 
-
-       @Override
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bye);
@@ -28,6 +28,7 @@ public class bye extends ActionBarActivity {
                     .add(R.id.container, new byeFragment())
                     .commit();
         }
+
     }
 
 
@@ -57,7 +58,9 @@ public class bye extends ActionBarActivity {
     /**
      * A placeholder fragment containing a simple view.
      */
-    public static  class byeFragment extends Fragment {
+    public static  class byeFragment extends Fragment{
+
+
 
         public byeFragment() {
         }
@@ -66,7 +69,30 @@ public class bye extends ActionBarActivity {
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_bye, container, false);
 
-            return rootView;
+
+            provider db = new provider(getActivity()) ;
+            db.open() ;
+            int col=1;
+            ContentValues cv = new ContentValues() ;
+            Cursor cursor = db.getTable(contract.ByeEntry.TABLE_NAME);
+            String[] myInts = new String[cursor.getCount()]; // объявляем массив
+
+            if (cursor.moveToFirst()) // если курсор не пустой
+            {
+                for (int i = 0; i < cursor.getCount(); i++)
+                {
+                    myInts[i] = cursor.getString(col); // заполняем
+                    cursor.moveToNext();
+                }
+            }
+            cursor.close();
+            db.close();
+
+            ListView listView = (ListView) rootView.findViewById(R.id.ListViewAdd);
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1 , myInts);
+            listView.setAdapter(adapter) ;
+
+    return rootView;
         }
     }
 }

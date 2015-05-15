@@ -19,7 +19,7 @@
         <ListView
             android:layout_width="wrap_content"
             android:layout_height="373dp"
-            android:id="@+id/listView2"
+            android:id="@+id/ListViewAdd"
             android:layout_gravity="center_horizontal"
             />
 
@@ -70,12 +70,13 @@
 
         </LinearLayout>
 
-        <ImageButton
-            android:layout_width="match_parent"
+        <Button
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@string/add_record"
             android:id="@+id/addbye"
-            android:src="@android:drawable/ic_menu_add"
-            android:focusableInTouchMode="false" />
+            android:layout_gravity="center_horizontal" />
+
     </LinearLayout>
 
 </RelativeLayout>
