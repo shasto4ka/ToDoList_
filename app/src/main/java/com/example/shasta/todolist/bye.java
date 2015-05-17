@@ -62,16 +62,25 @@ public class bye extends ActionBarActivity {
 
         public byeFragment() {
         }
+        provider db;
         byeAdapter byeadapter;
+        Cursor cursor;
+
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
 
 
-            provider db = new provider(getActivity()) ;
+            db = new provider(getActivity()) ;
             db.open() ;
-            Cursor cursor = db.getTable(contract.ByeEntry.TABLE_NAME);
+            /*db.addRecBye("milk",5) ;
+            db.addRecBye("coffe",4) ;
+            db.addRecBye("soda",5) ;
+            db.addRecBye("farch",5) ;
+            db.addRecBye("vhiskie",4) ;
+*/
+            cursor = db.getTable(contract.ByeEntry.TABLE_NAME);
 
             byeadapter = new byeAdapter(getActivity(),cursor, 0);
             final View rootView = inflater.inflate(R.layout.fragment_bye, container, false);
@@ -80,17 +89,16 @@ public class bye extends ActionBarActivity {
             listView.setAdapter(byeadapter);
             listView.setOnItemLongClickListener(this) ;
 
-            db.close();
-            cursor.close() ;
 
             return rootView;
        }
 
         @Override
         public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-
-           //удалить данные из списка
-
+            cursor = (Cursor) parent.getItemAtPosition(position);
+            db.delRecBye(cursor.getLong(0));
+            byeadapter.notifyDataSetChanged();
+            cursor.requery();
             return true;
         }
     }
