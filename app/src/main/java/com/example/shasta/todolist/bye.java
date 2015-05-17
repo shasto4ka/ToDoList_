@@ -1,6 +1,5 @@
 package com.example.shasta.todolist;
 
-import android.content.ContentValues;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,13 +9,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.shasta.todolist.data.contract;
 import com.example.shasta.todolist.data.provider;
 
 public class bye extends ActionBarActivity {
+
 
 
     @Override
@@ -58,41 +58,41 @@ public class bye extends ActionBarActivity {
     /**
      * A placeholder fragment containing a simple view.
      */
-    public static  class byeFragment extends Fragment{
-
-
+    public static  class byeFragment extends Fragment  implements AdapterView.OnItemLongClickListener{
 
         public byeFragment() {
         }
+        byeAdapter byeadapter;
+
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_bye, container, false);
 
 
             provider db = new provider(getActivity()) ;
             db.open() ;
-            int col=1;
-            ContentValues cv = new ContentValues() ;
             Cursor cursor = db.getTable(contract.ByeEntry.TABLE_NAME);
-            String[] myInts = new String[cursor.getCount()]; // объявляем массив
 
-            if (cursor.moveToFirst()) // если курсор не пустой
-            {
-                for (int i = 0; i < cursor.getCount(); i++)
-                {
-                    myInts[i] = cursor.getString(col); // заполняем
-                    cursor.moveToNext();
-                }
-            }
-            cursor.close();
+            byeadapter = new byeAdapter(getActivity(),cursor, 0);
+            final View rootView = inflater.inflate(R.layout.fragment_bye, container, false);
+
+            ListView listView = (ListView) rootView.findViewById(R.id.ListViewBye);
+            listView.setAdapter(byeadapter);
+            listView.setOnItemLongClickListener(this) ;
+
             db.close();
+            cursor.close() ;
 
-            ListView listView = (ListView) rootView.findViewById(R.id.ListViewAdd);
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1 , myInts);
-            listView.setAdapter(adapter) ;
+            return rootView;
+       }
 
-    return rootView;
+        @Override
+        public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+
+           //удалить данные из списка
+
+            return true;
         }
     }
 }
+

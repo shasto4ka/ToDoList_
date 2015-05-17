@@ -92,7 +92,7 @@ public class provider{
         cv.put(contract.passEntry.COLUMN_PASS , pass );
         mdb.insert(contract.passEntry.TABLE_NAME, null, cv);}
 
-    public void delRec(long id) {
+    public void delRecBye(long id) {
             mdb.delete(contract.ByeEntry.TABLE_NAME ,contract.ByeEntry._ID + " = " + id, null);
         }
 

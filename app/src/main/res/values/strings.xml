@@ -18,5 +18,7 @@
     <string name="delete_record">Delete record</string>
     <string name="next_bye">Next bye</string>
     <string name="priority">Priority</string>
+    <string name="delete_long">Long tap for delete item</string>
+
 
 </resources>
