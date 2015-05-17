@@ -10,7 +10,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.RatingBar;
 
 import com.example.shasta.todolist.data.contract;
 import com.example.shasta.todolist.data.provider;
@@ -89,9 +92,29 @@ public class bye extends ActionBarActivity {
             listView.setAdapter(byeadapter);
             listView.setOnItemLongClickListener(this) ;
 
+            final RatingBar rb = (RatingBar) rootView.findViewById(R.id.ratingBar);
+            final EditText tv = (EditText) rootView.findViewById(R.id.editBye) ;
+            Button button = (Button) rootView.findViewById(R.id.addbye);
+            button.setOnClickListener(
+                    new View.OnClickListener() {
+                public void onClick(View v) {
+                        String product = tv.getText().toString();
+                        int priority ;
+                    float rating = rb.getRating();
+                    priority = Math.round(rating);
+                    db.addRecBye(product,priority);
+                    byeadapter.notifyDataSetChanged();
+                    rb.setRating(0);
+                    tv.setText("") ;
+                    cursor.requery();
+                    }
 
-            return rootView;
+            });
+
+               return rootView;
        }
+
+
 
         @Override
         public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
@@ -101,6 +124,8 @@ public class bye extends ActionBarActivity {
             cursor.requery();
             return true;
         }
+
+
     }
 }
 
