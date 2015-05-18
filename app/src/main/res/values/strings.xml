@@ -23,5 +23,10 @@
 
     <string name="add_film_str">Add film</string>
     <string name="add_zhanr_str">Zhanr</string>
+    <string name="title_activity_read">read</string>
+
+    <string name="add_read_str">Add book</string>
+    <string name="author">Author</string>
+
 
 </resources>

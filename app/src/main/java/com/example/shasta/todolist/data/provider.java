@@ -99,6 +99,11 @@ public class provider{
     public void delRecFilm(long id) {
         mdb.delete(contract.FilmEntry.TABLE_NAME ,contract.FilmEntry._ID + " = " + id, null);
     }
+
+    public void delRecRead(long id) {
+        mdb.delete(contract.ReadEntry.TABLE_NAME ,contract.ReadEntry._ID + " = " + id, null);
+    }
+
     private class DBHelper extends SQLiteOpenHelper {
 
 
