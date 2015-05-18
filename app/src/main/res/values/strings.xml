@@ -19,6 +19,9 @@
     <string name="next_bye">Next bye</string>
     <string name="priority">Priority</string>
     <string name="delete_long">Long tap for delete item</string>
+    <string name="title_activity_film">film</string>
 
+    <string name="add_film_str">Add film</string>
+    <string name="add_zhanr_str">Zhanr</string>
 
 </resources>

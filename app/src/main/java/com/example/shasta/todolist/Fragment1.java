@@ -73,22 +73,22 @@ public class Fragment1 extends Fragment {
                     String forecast = adapter.getItem(position);
                     Toast.makeText(getActivity(), forecast, Toast.LENGTH_SHORT).show();
                     Intent intent;
-/*                    switch (position) {
-                        case 0: {
-                            intent = new Intent(getActivity(), bye.class)
-                                    .putExtra(Intent.EXTRA_TEXT, forecast);
-                            break;
-                        }
-                        case 0: {
-                            intent = new Intent(getActivity(), bye.class)
-                                    .putExtra(Intent.EXTRA_TEXT, forecast);
-                            break;
-                        }
+                   switch (position) {
+                       case 0: {
+                           intent = new Intent(getActivity(), bye.class)
+                                   .putExtra(Intent.EXTRA_TEXT, forecast);
+                           startActivity(intent) ;
+                           break;
+                       }
+                       case 3: {
+                           intent = new Intent(getActivity(), film.class)
+                                   .putExtra(Intent.EXTRA_TEXT, forecast);
+                           startActivity(intent) ;
+                           break;
+                       }
 
-                    }*/
-                    intent = new Intent(getActivity(), bye.class)
-                        .putExtra(Intent.EXTRA_TEXT, forecast);
-                    startActivity(intent) ;
+                   }
+
                 }
             });
 

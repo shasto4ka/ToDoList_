@@ -24,8 +24,16 @@
             android:name=".bye"
             android:label="@string/title_activity_bye" >
             <meta-data
-                         android:name="android.support.PARENT_ACTIVITY"
-                         android:value="com.example.shasta.todolist.MainActivity" />
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.shasta.todolist.MainActivity" />
+        </activity>
+        <activity
+            android:name=".film"
+            android:label="@string/title_activity_film"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.shasta.todolist.MainActivity" />
         </activity>
     </application>
 

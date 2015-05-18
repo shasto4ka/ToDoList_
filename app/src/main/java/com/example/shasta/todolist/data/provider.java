@@ -96,6 +96,9 @@ public class provider{
             mdb.delete(contract.ByeEntry.TABLE_NAME ,contract.ByeEntry._ID + " = " + id, null);
         }
 
+    public void delRecFilm(long id) {
+        mdb.delete(contract.FilmEntry.TABLE_NAME ,contract.FilmEntry._ID + " = " + id, null);
+    }
     private class DBHelper extends SQLiteOpenHelper {
 
 
