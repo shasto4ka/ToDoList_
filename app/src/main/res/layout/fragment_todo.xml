@@ -47,23 +47,9 @@
         <EditText
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:inputType="time"
+            android:inputType="datetime"
             android:ems="10"
             android:id="@+id/edittodotime"
-            android:layout_weight="0.39" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/Indate"
-            android:id="@+id/textView14" />
-
-        <EditText
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:inputType="date"
-            android:ems="10"
-            android:id="@+id/edittododate"
             android:layout_weight="1" />
 
     </LinearLayout>

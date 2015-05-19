@@ -4,7 +4,6 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,6 +15,8 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 import com.example.shasta.todolist.data.provider;
+
+import java.util.Calendar;
 
 
 public class todo extends ActionBarActivity {
@@ -59,6 +60,13 @@ public class todo extends ActionBarActivity {
 
         public todoFragment() {
         }
+
+        public String parseStr(String str){
+            String str1[] = str.split("[\\p{Punct}\\s]");
+            String str2;
+            str2 = str1[4]+"/"+str1[3]+"/"+str1[2]+" "+str1[0]+":"+str1[1];
+            return str2;
+        }
         provider db;
         todoAdapter todoadapter;
         Cursor cursor;
@@ -79,21 +87,34 @@ public class todo extends ActionBarActivity {
             listView.setOnItemLongClickListener(this);
             final EditText todonm = (EditText) rootView.findViewById(R.id.edittodo);
             final EditText todotm = (EditText) rootView.findViewById(R.id.edittodotime);
-            final EditText tododt = (EditText) rootView.findViewById(R.id.edittododate);
+
+            Calendar c = Calendar.getInstance() ;
+            int hours = c.get(Calendar.HOUR_OF_DAY);
+            int minutes = c.get(Calendar.MINUTE);
+            int day = c.get(Calendar.DAY_OF_MONTH);
+            int month = c.get(Calendar.MONTH)+1;
+            int year = c.get(Calendar.YEAR);
+            todotm.setText(Integer.toString(hours)+":"+Integer.toString(minutes)+" "+Integer.toString(day )+ "/"+Integer.toString(month)+"/"+Integer.toString(year));
 
             Button button3 = (Button) rootView.findViewById(R.id.buttonaddtodo);
             button3.setOnClickListener(
                     new View.OnClickListener() {
                         public void onClick(View v) {
-                            String todo1 = todonm.getText().toString();
-                            String tododate1 = tododt.getText().toString();
                             String todotime1 = todotm.getText().toString();
-                            Log.v("bla",todo1+" "+tododate1 +" "+todotime1);
-                            //db.addRectodo(,false);
+                            String todo1 = todonm.getText().toString();
+                            String p = parseStr(todotime1);
+                            db.addRectodo(todo1,p,false);
                             todoadapter.notifyDataSetChanged();
+
                             todonm.setText("");
-                            todotm.setText("");
-                            tododt.setText("");
+                            Calendar c1 = Calendar.getInstance() ;
+                            int hours1 = c1.get(Calendar.HOUR_OF_DAY);
+                            int minutes1 = c1.get(Calendar.MINUTE);
+                            int day1 = c1.get(Calendar.DAY_OF_MONTH);
+                            int month1 = c1.get(Calendar.MONTH)+1;
+                            int year1 = c1.get(Calendar.YEAR);
+                            todotm.setText(Integer.toString(hours1)+":"+Integer.toString(minutes1)+" "+Integer.toString(day1 )+ "/"+Integer.toString(month1)+"/"+Integer.toString(year1));
+
                             cursor.requery();
                         }
 

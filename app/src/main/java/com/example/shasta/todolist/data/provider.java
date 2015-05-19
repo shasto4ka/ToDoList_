@@ -54,7 +54,7 @@ public class provider{
 
 
     public Cursor getAllDatatodo() {
-        return mdb.query(contract.todoEntry.TABLE_NAME, null, null, null, null, null, null); //!!!!!name_of_table
+        return mdb.query(contract.todoEntry.TABLE_NAME, null, null, null, null, null, contract.todoEntry.COLUMN_DATETIME); //!!!!!name_of_table
     }
     public void addRectodo(String name, String date, boolean yes) {
         ContentValues cv = new ContentValues();
