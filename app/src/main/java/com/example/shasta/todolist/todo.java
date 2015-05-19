@@ -94,7 +94,7 @@ public class todo extends ActionBarActivity {
                             todoadapter.notifyDataSetChanged();
                             todonm.setText("");
                             todotm.setText("");
-                         //   tododt.setDate();
+                            tododt.setText("");
                             cursor.requery();
                         }
 

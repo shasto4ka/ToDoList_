@@ -92,6 +92,12 @@ public class Fragment1 extends Fragment {
                            startActivity(intent) ;
                            break;
                        }
+                       case 5: {
+                           intent = new Intent(getActivity(), toget.class)
+                                   .putExtra(Intent.EXTRA_TEXT, forecast);
+                           startActivity(intent) ;
+                           break;
+                       }
                        case 6: {
                            intent = new Intent(getActivity(), Password.class)
                                    .putExtra(Intent.EXTRA_TEXT, forecast);

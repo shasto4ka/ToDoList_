@@ -18,23 +18,24 @@ import com.example.shasta.todolist.data.contract;
 import com.example.shasta.todolist.data.provider;
 
 
-public class film extends ActionBarActivity {
+public class toget extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_film);
+        setContentView(R.layout.activity_toget);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new  filmFragment())
+                    .add(R.id.container, new togetFragment())
                     .commit();
         }
     }
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_film, menu);
+        getMenuInflater().inflate(R.menu.menu_toget, menu);
         return true;
     }
 
@@ -53,57 +54,58 @@ public class film extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public static class filmFragment extends Fragment implements AdapterView.OnItemLongClickListener {
+    /**
+     * A placeholder fragment containing a simple view.
+     */
+    public static class togetFragment extends Fragment implements AdapterView.OnItemLongClickListener{
 
-        public filmFragment() {
+        public togetFragment() {
         }
 
         provider db;
-        filmAdapter filmadapter;
+        togetAdapter  getadapter;
         Cursor cursor;
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
+
             db = new provider(getActivity());
             db.open();
 
-            cursor = db.getTable(contract.FilmEntry.TABLE_NAME);
-            filmadapter = new filmAdapter(getActivity(), cursor, 0);
+            cursor = db.getTable(contract.togetEntry.TABLE_NAME);
+            getadapter = new togetAdapter(getActivity(), cursor, 0);
 
-            View rootView = inflater.inflate(R.layout.fragment_film, container, false);
+            View rootView = inflater.inflate(R.layout.fragment_toget, container, false);
 
-            ListView listView = (ListView) rootView.findViewById(R.id.listViewFilm);
-            listView.setAdapter(filmadapter);
-            listView.setOnItemLongClickListener(this);
-            final EditText etfilm = (EditText) rootView.findViewById(R.id.editfilmtext);
-            final EditText etfilmzhanr = (EditText) rootView.findViewById(R.id.editfilmzhanr);
-            Button button1 = (Button) rootView.findViewById(R.id.film_add_butt);
-            button1.setOnClickListener(
-                    new View.OnClickListener() {
-                        public void onClick(View v) {
-                            String film = etfilm.getText().toString();
-                            String zhanr = etfilmzhanr.getText().toString();
-                            db.addRecFilm(film, zhanr, false);
-                            filmadapter.notifyDataSetChanged();
-                            etfilm.setText("");
-                            etfilmzhanr.setText("");
-                            cursor.requery();
-                        }
 
-                    });
+        ListView listView = (ListView) rootView.findViewById(R.id.listgoal);
+        listView.setAdapter(getadapter);
+        listView.setOnItemLongClickListener(this);
+        final EditText goaladd = (EditText) rootView.findViewById(R.id.editgoal);
 
+        Button button8 = (Button) rootView.findViewById(R.id.buttongoal);
+        button8.setOnClickListener(
+                new View.OnClickListener() {
+            public void onClick(View v) {
+                String goal1 = goaladd.getText().toString();
+                db.addRectoget(goal1, false);
+                getadapter.notifyDataSetChanged();
+                goaladd.setText("");
+                cursor.requery();
+            }
+
+        });
             return rootView;
         }
-
-
         @Override
         public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
             cursor = (Cursor) parent.getItemAtPosition(position);
-            db.delRecFilm(cursor.getLong(0));
-            filmadapter.notifyDataSetChanged();
+            db.delRectoget(cursor.getLong(0));
+            getadapter.notifyDataSetChanged();
             cursor.requery();
             return true;
         }
+
     }
 }

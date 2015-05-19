@@ -37,6 +37,8 @@
     <string name="Todo">To do</string>
     <string name="Indate">In date</string>
     <string name="InTime">In time</string>
+    <string name="goal">Add goal</string>
+    <string name="title_activity_toget">toget</string>
 
 
 
