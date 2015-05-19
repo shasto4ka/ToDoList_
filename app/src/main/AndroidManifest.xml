@@ -51,6 +51,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.shasta.todolist.MainActivity" />
         </activity>
+        <activity
+            android:name=".todo"
+            android:label="@string/title_activity_todo"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.shasta.todolist.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

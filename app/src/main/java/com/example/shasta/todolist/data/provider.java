@@ -108,6 +108,10 @@ public class provider{
         mdb.delete(contract.passEntry.TABLE_NAME ,contract.passEntry._ID + " = " + id, null);
     }
 
+    public void delRecTodo(long id) {
+        mdb.delete(contract.todoEntry.TABLE_NAME ,contract.todoEntry._ID + " = " + id, null);
+    }
+
     private class DBHelper extends SQLiteOpenHelper {
 
 

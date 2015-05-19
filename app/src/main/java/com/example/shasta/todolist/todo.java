@@ -4,6 +4,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.ListView;
 
@@ -18,15 +20,15 @@ import com.example.shasta.todolist.data.contract;
 import com.example.shasta.todolist.data.provider;
 
 
-public class read extends ActionBarActivity {
+public class todo extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_read);
+        setContentView(R.layout.activity_todo);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new readFragment())
+                    .add(R.id.container, new todoFragment())
                     .commit();
         }
     }
@@ -35,7 +37,7 @@ public class read extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_read, menu);
+        getMenuInflater().inflate(R.menu.menu_todo, menu);
         return true;
     }
 
@@ -54,15 +56,13 @@ public class read extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    public static class readFragment extends Fragment implements AdapterView.OnItemLongClickListener {
 
-        public readFragment() {
+    public static class todoFragment extends Fragment  implements AdapterView.OnItemLongClickListener{
+
+        public todoFragment() {
         }
         provider db;
-        readAdapter readadapter;
+        todoAdapter todoadapter;
         Cursor cursor;
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -71,44 +71,44 @@ public class read extends ActionBarActivity {
             db = new provider(getActivity());
             db.open();
 
-            cursor = db.getTable(contract.ReadEntry.TABLE_NAME);
-            readadapter = new readAdapter(getActivity(), cursor, 0);
-            View rootView = inflater.inflate(R.layout.fragment_read, container, false);
+            cursor = db.getTable(contract.todoEntry.TABLE_NAME);
+            todoadapter = new todoAdapter(getActivity(), cursor, 0);
+            View rootView = inflater.inflate(R.layout.fragment_todo, container, false);
 
 
-            ListView listView = (ListView) rootView.findViewById(R.id.listViewRead);
-            listView.setAdapter(readadapter);
+            ListView listView = (ListView) rootView.findViewById(R.id.listViewtodo);
+            listView.setAdapter(todoadapter);
             listView.setOnItemLongClickListener(this);
-            final EditText name = (EditText) rootView.findViewById(R.id.editbook);
-            final EditText author = (EditText) rootView.findViewById(R.id.editauthor);
-            final EditText zhanr = (EditText) rootView.findViewById(R.id.editzhanr);
-            Button button2 = (Button) rootView.findViewById(R.id.button_add_read);
-            button2.setOnClickListener(
+            final EditText todonm = (EditText) rootView.findViewById(R.id.edittodo);
+            final EditText todotm = (EditText) rootView.findViewById(R.id.edittodotime);
+            final CalendarView tododt = (CalendarView) rootView.findViewById(R.id.calendarView);
+
+            Button button3 = (Button) rootView.findViewById(R.id.buttonaddtodo);
+            button3.setOnClickListener(
                     new View.OnClickListener() {
                         public void onClick(View v) {
-                            String name1 = name.getText().toString();
-                            String author1 = author.getText().toString();
-                            String zhanr1 = zhanr.getText().toString();
-                            db.addRecRead(name1, author1, zhanr1, false);
-                            readadapter.notifyDataSetChanged();
-                            name.setText("");
-                            author.setText("");
-                            zhanr.setText("");
+                            String todo1 = todonm.getText().toString();
+                            long tododate1 = tododt.getDate
+                            String todotime1 = todotm.getText().toString();
+                            Log.v("bla",todo1+" "+Long.toString(tododate1) +" "+todotime1);
+                            //db.addRecFilm(film, zhanr, false);
+                            todoadapter.notifyDataSetChanged();
+                            todonm.setText("");
+                            todotm.setText("");
+                         //   tododt.setDate();
                             cursor.requery();
                         }
 
                     });
 
 
-
             return rootView;
         }
-
         @Override
         public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
             cursor = (Cursor) parent.getItemAtPosition(position);
-            db.delRecRead(cursor.getLong(0));
-            readadapter.notifyDataSetChanged();
+            db.delRecTodo(cursor.getLong(0));
+            todoadapter.notifyDataSetChanged();
             cursor.requery();
             return true;
         }
