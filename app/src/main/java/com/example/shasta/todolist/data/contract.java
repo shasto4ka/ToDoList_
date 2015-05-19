@@ -10,11 +10,8 @@ public class contract {
         public static final String COLUMN_PRODUCT = "product";
         public static final String COLUMN_PRIORITY = "priority";
     }
-    public static final class HabitEntry implements BaseColumns {
-	public static final String TABLE_NAME = "habit";
-        public static final String COLUMN_HABIT = "habit";
-     
-    }
+
+
     public static final class ReadEntry implements BaseColumns {
 	public static final String TABLE_NAME = "read";
         public static final String COLUMN_BOOK = "book";
@@ -37,7 +34,7 @@ public class contract {
     public static final class togetEntry implements BaseColumns {
 	public static final String TABLE_NAME = "toget";
         public static final String COLUMN_GOAL = "goal";
-        public static final String COLUMN_YES = "i_get_it";     
+        public static final String COLUMN_YES = "i_get_it";
     }
     public static final class passEntry implements BaseColumns {
 	public static final String TABLE_NAME = "pass";

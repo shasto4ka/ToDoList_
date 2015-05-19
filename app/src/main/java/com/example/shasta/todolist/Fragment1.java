@@ -80,31 +80,31 @@ public class Fragment1 extends Fragment {
                            startActivity(intent) ;
                            break;
                        }
-                       case 3: {
+                       case 2: {
                            intent = new Intent(getActivity(), film.class)
                                    .putExtra(Intent.EXTRA_TEXT, forecast);
                            startActivity(intent) ;
                            break;
                        }
-                       case 4: {
+                       case 3: {
                            intent = new Intent(getActivity(), todo.class)
                                    .putExtra(Intent.EXTRA_TEXT, forecast);
                            startActivity(intent) ;
                            break;
                        }
-                       case 5: {
+                       case 4: {
                            intent = new Intent(getActivity(), toget.class)
                                    .putExtra(Intent.EXTRA_TEXT, forecast);
                            startActivity(intent) ;
                            break;
                        }
-                       case 6: {
+                       case 5: {
                            intent = new Intent(getActivity(), Password.class)
                                    .putExtra(Intent.EXTRA_TEXT, forecast);
                            startActivity(intent) ;
                            break;
                        }
-                       case 2: {
+                       case 1: {
                            intent = new Intent(getActivity(), read.class)
                                    .putExtra(Intent.EXTRA_TEXT, forecast);
                            startActivity(intent) ;

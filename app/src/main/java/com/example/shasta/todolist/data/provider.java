@@ -31,14 +31,6 @@ public class provider{
         cv.put(contract.ByeEntry.COLUMN_PRIORITY, img);
         mdb.insert(contract.ByeEntry.TABLE_NAME, null, cv);}
 
-    public Cursor getAllDataHabit() {
-        return mdb.query(contract.HabitEntry.TABLE_NAME, null, null, null, null, null, null); //!!!!!name_of_table
-    }
-    public void addRecHabit(String txt) {
-        ContentValues cv = new ContentValues();
-        cv.put(contract.HabitEntry.COLUMN_HABIT , txt);
-        mdb.insert(contract.HabitEntry.TABLE_NAME, null, cv);}
-
     public Cursor getAllDataRead() {
         return mdb.query(contract.ReadEntry.TABLE_NAME, null, null, null, null, null, null); //!!!!!name_of_table
     }
@@ -142,7 +134,5 @@ public class provider{
         String sqlQuery = "SELECT * FROM " + tbl_name + ";";
         return mdb.rawQuery(sqlQuery, null);
     }
-
-
 }
 
