@@ -15,7 +15,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
-import com.example.shasta.todolist.data.contract;
 import com.example.shasta.todolist.data.provider;
 
 
@@ -70,7 +69,7 @@ public class todo extends ActionBarActivity {
             db = new provider(getActivity());
             db.open();
 
-            cursor = db.getTable(contract.todoEntry.TABLE_NAME);
+            cursor = db.getAllDatatodo();
             todoadapter = new todoAdapter(getActivity(), cursor, 0);
             View rootView = inflater.inflate(R.layout.fragment_todo, container, false);
 

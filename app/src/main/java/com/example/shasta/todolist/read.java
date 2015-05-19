@@ -14,7 +14,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
-import com.example.shasta.todolist.data.contract;
 import com.example.shasta.todolist.data.provider;
 
 
@@ -71,7 +70,7 @@ public class read extends ActionBarActivity {
             db = new provider(getActivity());
             db.open();
 
-            cursor = db.getTable(contract.ReadEntry.TABLE_NAME);
+            cursor = db.getAllDataRead();
             readadapter = new readAdapter(getActivity(), cursor, 0);
             View rootView = inflater.inflate(R.layout.fragment_read, container, false);
 

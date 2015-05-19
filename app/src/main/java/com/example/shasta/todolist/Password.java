@@ -14,7 +14,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
-import com.example.shasta.todolist.data.contract;
 import com.example.shasta.todolist.data.provider;
 
 
@@ -72,7 +71,7 @@ public class Password extends ActionBarActivity {
 
             db = new provider(getActivity());
             db.open();
-            cursor = db.getTable(contract.passEntry.TABLE_NAME) ;
+            cursor = db.getAllDatapass() ;
             padapter = new passadapter(getActivity(), cursor, 0) ;
             View rootView = inflater.inflate(R.layout.fragment_password, container, false);
 

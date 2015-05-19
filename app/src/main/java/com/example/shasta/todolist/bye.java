@@ -15,7 +15,6 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RatingBar;
 
-import com.example.shasta.todolist.data.contract;
 import com.example.shasta.todolist.data.provider;
 
 public class bye extends ActionBarActivity {
@@ -77,13 +76,9 @@ public class bye extends ActionBarActivity {
 
             db = new provider(getActivity()) ;
             db.open() ;
-            /*db.addRecBye("milk",5) ;
-            db.addRecBye("coffe",4) ;
-            db.addRecBye("soda",5) ;
-            db.addRecBye("farch",5) ;
-            db.addRecBye("vhiskie",4) ;
-*/
-            cursor = db.getTable(contract.ByeEntry.TABLE_NAME);
+
+            cursor = db.getAllDataBye() ;//!!!!
+
 
             byeadapter = new byeAdapter(getActivity(),cursor, 0);
             final View rootView = inflater.inflate(R.layout.fragment_bye, container, false);

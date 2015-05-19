@@ -23,7 +23,7 @@ public class provider{
     }
 
     public Cursor getAllDataBye() {
-        return mdb.query(contract.ByeEntry.TABLE_NAME, null, null, null, null, null, null); //!!!!!name_of_table
+        return mdb.query(contract.ByeEntry.TABLE_NAME, null, null, null, null, null, contract.ByeEntry.COLUMN_PRIORITY+ " DESC"); //!!!!!name_of_table
     }
     public void addRecBye(String txt, int img) {
         ContentValues cv = new ContentValues();
@@ -71,7 +71,8 @@ public class provider{
         ContentValues cv = new ContentValues();
         cv.put(contract.togetEntry.COLUMN_GOAL , name);
         cv.put(contract.togetEntry.COLUMN_YES , yes);
-        mdb.insert(contract.togetEntry.TABLE_NAME, null, cv);}
+        mdb.insert(contract.togetEntry.TABLE_NAME, null, cv);
+    }
 
 
     public Cursor getAllDatapass() {
