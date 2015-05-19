@@ -1,5 +1,7 @@
 package com.example.shasta.todolist;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -41,18 +43,18 @@ public class todo extends ActionBarActivity {
         if (id == R.id.action_settings) {
             return true;
         }
-       return super.onOptionsItemSelected(item);
+        return super.onOptionsItemSelected(item);
     }
 
-    public static class todoFragment extends Fragment  implements AdapterView.OnItemLongClickListener{
+    public static class todoFragment extends Fragment implements AdapterView.OnItemLongClickListener {
 
         public todoFragment() {
         }
 
-        public String parseStr(String str){
+        public String parseStr(String str) {
             String str1[] = str.split("[\\p{Punct}\\s]");
             String str2;
-            str2 = str1[4]+"/"+str1[3]+"/"+str1[2]+" "+str1[0]+":"+str1[1];
+            str2 = str1[4] + "/" + str1[3] + "/" + str1[2] + " " + str1[0] + ":" + str1[1];
             return str2;
         }
 
@@ -73,13 +75,13 @@ public class todo extends ActionBarActivity {
             listView.setOnItemLongClickListener(this);
             final EditText todonm = (EditText) rootView.findViewById(R.id.edittodo);
             final EditText todotm = (EditText) rootView.findViewById(R.id.edittodotime);
-            Calendar c = Calendar.getInstance() ;
+            Calendar c = Calendar.getInstance();
             int hours = c.get(Calendar.HOUR_OF_DAY);
             int minutes = c.get(Calendar.MINUTE);
             int day = c.get(Calendar.DAY_OF_MONTH);
-            int month = c.get(Calendar.MONTH)+1;
+            int month = c.get(Calendar.MONTH) + 1;
             int year = c.get(Calendar.YEAR);
-            todotm.setText(Integer.toString(hours)+":"+Integer.toString(minutes)+" "+Integer.toString(day )+ "/"+Integer.toString(month)+"/"+Integer.toString(year));
+            todotm.setText(Integer.toString(hours) + ":" + Integer.toString(minutes) + " " + Integer.toString(day) + "/" + Integer.toString(month) + "/" + Integer.toString(year));
             Button button3 = (Button) rootView.findViewById(R.id.buttonaddtodo);
             button3.setOnClickListener(
                     new View.OnClickListener() {
@@ -87,16 +89,16 @@ public class todo extends ActionBarActivity {
                             String todotime1 = todotm.getText().toString();
                             String todo1 = todonm.getText().toString();
                             String p = parseStr(todotime1);
-                            db.addRectodo(todo1,p,false);
+                            db.addRectodo(todo1, p, false);
                             todoadapter.notifyDataSetChanged();
                             todonm.setText("");
-                            Calendar c1 = Calendar.getInstance() ;
+                            Calendar c1 = Calendar.getInstance();
                             int hours1 = c1.get(Calendar.HOUR_OF_DAY);
                             int minutes1 = c1.get(Calendar.MINUTE);
                             int day1 = c1.get(Calendar.DAY_OF_MONTH);
-                            int month1 = c1.get(Calendar.MONTH)+1;
+                            int month1 = c1.get(Calendar.MONTH) + 1;
                             int year1 = c1.get(Calendar.YEAR);
-                            todotm.setText(Integer.toString(hours1)+":"+Integer.toString(minutes1)+" "+Integer.toString(day1 )+ "/"+Integer.toString(month1)+"/"+Integer.toString(year1));
+                            todotm.setText(Integer.toString(hours1) + ":" + Integer.toString(minutes1) + " " + Integer.toString(day1) + "/" + Integer.toString(month1) + "/" + Integer.toString(year1));
                             cursor.requery();
                         }
 
@@ -105,11 +107,34 @@ public class todo extends ActionBarActivity {
         }
 
         @Override
-        public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-            cursor = (Cursor) parent.getItemAtPosition(position);
-            db.delRecTodo(cursor.getLong(0));
-            todoadapter.notifyDataSetChanged();
-            cursor.requery();
+        public boolean onItemLongClick(final AdapterView<?> parent, View view, final int position, long id) {
+
+
+            AlertDialog.Builder alertDialog;
+            alertDialog = new AlertDialog.Builder(getActivity());
+            alertDialog.setTitle("Edit?");
+            alertDialog.setNegativeButton("Delete", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    cursor = (Cursor) parent.getItemAtPosition(position);
+                    db.delRecTodo(cursor.getLong(0));
+                    todoadapter.notifyDataSetChanged();
+                    cursor.requery();
+                }
+            });
+            alertDialog.setPositiveButton("Change", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    cursor = (Cursor) parent.getItemAtPosition(position);
+                    boolean c = false;
+                    if (cursor.getInt(3) == 0)
+                        c = false;
+                    if (cursor.getInt(3) == 1)
+                        c = true;
+                    db.changeFilm(c, cursor.getInt(0));
+                    todoadapter.notifyDataSetChanged();
+                    cursor.requery();
+                }
+            });
+            alertDialog.show();
             return true;
         }
     }

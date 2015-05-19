@@ -1,5 +1,7 @@
 package com.example.shasta.todolist;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -83,11 +85,33 @@ public class film extends ActionBarActivity {
         }
 
         @Override
-        public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-            cursor = (Cursor) parent.getItemAtPosition(position);
-            db.delRecFilm(cursor.getLong(0));
-            filmadapter.notifyDataSetChanged();
-            cursor.requery();
+        public boolean onItemLongClick(final AdapterView<?> parent, View view, final int position, long id) {
+
+            AlertDialog.Builder alertDialog;
+            alertDialog = new  AlertDialog.Builder(getActivity());
+            alertDialog.setTitle("Edit?");
+            alertDialog.setNegativeButton("Delete", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+
+                    cursor = (Cursor) parent.getItemAtPosition(position);
+                    db.delRecFilm(cursor.getLong(0));
+                    filmadapter.notifyDataSetChanged();
+                    cursor.requery();
+
+                } });
+            alertDialog.setPositiveButton("Change", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    cursor = (Cursor) parent.getItemAtPosition(position);
+                    boolean c=false;
+                    if (cursor.getInt(3)==0)
+                        c=false;
+                    if (cursor.getInt(3)==1)
+                        c=true;
+                    db.changeFilm(c,cursor.getInt(0));
+                    filmadapter.notifyDataSetChanged();
+                    cursor.requery();
+                } });
+            alertDialog.show();
             return true;
         }
     }

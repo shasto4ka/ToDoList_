@@ -109,6 +109,20 @@ public class provider{
         mdb.delete(contract.todoEntry.TABLE_NAME ,contract.todoEntry._ID + " = " + id, null);
     }
 
+
+
+    public void changeFilm(boolean yes, int id) {
+        ContentValues cv = new ContentValues();
+        cv.put(contract.FilmEntry.COLUMN_YES , !yes) ;
+        mdb.update(contract.FilmEntry.TABLE_NAME, cv, contract.FilmEntry._ID +"="+Integer.toString(id), null);
+    }
+
+    public void changeRead(boolean yes, int id) {
+        ContentValues cv = new ContentValues();
+        cv.put(contract.ReadEntry.COLUMN_YES , !yes) ;
+        mdb.update(contract.ReadEntry.TABLE_NAME, cv, contract.ReadEntry._ID +"="+Integer.toString(id), null);
+    }
+
     private class DBHelper extends SQLiteOpenHelper {
 
 
