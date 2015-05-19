@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.ListView;
 
@@ -81,17 +80,17 @@ public class todo extends ActionBarActivity {
             listView.setOnItemLongClickListener(this);
             final EditText todonm = (EditText) rootView.findViewById(R.id.edittodo);
             final EditText todotm = (EditText) rootView.findViewById(R.id.edittodotime);
-            final CalendarView tododt = (CalendarView) rootView.findViewById(R.id.calendarView);
+            final EditText tododt = (EditText) rootView.findViewById(R.id.edittododate);
 
             Button button3 = (Button) rootView.findViewById(R.id.buttonaddtodo);
             button3.setOnClickListener(
                     new View.OnClickListener() {
                         public void onClick(View v) {
                             String todo1 = todonm.getText().toString();
-                            long tododate1 = tododt.getDate
+                            String tododate1 = tododt.getText().toString();
                             String todotime1 = todotm.getText().toString();
-                            Log.v("bla",todo1+" "+Long.toString(tododate1) +" "+todotime1);
-                            //db.addRecFilm(film, zhanr, false);
+                            Log.v("bla",todo1+" "+tododate1 +" "+todotime1);
+                            //db.addRectodo(,false);
                             todoadapter.notifyDataSetChanged();
                             todonm.setText("");
                             todotm.setText("");
