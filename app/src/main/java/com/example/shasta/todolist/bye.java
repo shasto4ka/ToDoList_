@@ -19,8 +19,6 @@ import com.example.shasta.todolist.data.provider;
 
 public class bye extends ActionBarActivity {
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,63 +28,42 @@ public class bye extends ActionBarActivity {
                     .add(R.id.container, new byeFragment())
                     .commit();
         }
-
     }
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_bye, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
-
-    /**
-     * A placeholder fragment containing a simple view.
-     */
     public static  class byeFragment extends Fragment  implements AdapterView.OnItemLongClickListener{
 
         public byeFragment() {
         }
+
         provider db;
         byeAdapter byeadapter;
         Cursor cursor;
 
-
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-
-
             db = new provider(getActivity()) ;
             db.open() ;
-
             cursor = db.getAllDataBye() ;//!!!!
-
-
             byeadapter = new byeAdapter(getActivity(),cursor, 0);
             final View rootView = inflater.inflate(R.layout.fragment_bye, container, false);
-
             ListView listView = (ListView) rootView.findViewById(R.id.ListViewBye);
             listView.setAdapter(byeadapter);
             listView.setOnItemLongClickListener(this) ;
-
             final RatingBar rb = (RatingBar) rootView.findViewById(R.id.ratingBar);
             final EditText tv = (EditText) rootView.findViewById(R.id.editBye) ;
             Button button = (Button) rootView.findViewById(R.id.addbye);
@@ -105,11 +82,8 @@ public class bye extends ActionBarActivity {
                     }
 
             });
-
                return rootView;
        }
-
-
 
         @Override
         public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
@@ -119,8 +93,6 @@ public class bye extends ActionBarActivity {
             cursor.requery();
             return true;
         }
-
-
     }
 }
 

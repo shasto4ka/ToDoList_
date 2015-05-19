@@ -20,7 +20,6 @@ public class readAdapter extends CursorAdapter {
         public final TextView book_author;
         public final TextView book_read;
 
-
         public ViewHolder(View view) {
             book_name = (TextView) view.findViewById(R.id.read_name);
             book_author = (TextView) view.findViewById(R.id.read_author);

@@ -19,7 +19,6 @@ public class todoAdapter  extends CursorAdapter {
         public final TextView tododatetime;
         public final TextView todoyes;
 
-
         public ViewHolder(View view) {
             todo_id  = (TextView) view.findViewById(R.id.texttodoid );
             todo_name = (TextView) view.findViewById(R.id.texttodoname);
@@ -27,7 +26,6 @@ public class todoAdapter  extends CursorAdapter {
             todoyes = (TextView) view.findViewById(R.id.texttodoyes);
         }
     }
-
 
     public todoAdapter(Context context, Cursor c, int flags) {
         super(context, c, flags);

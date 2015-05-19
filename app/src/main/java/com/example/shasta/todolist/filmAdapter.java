@@ -18,8 +18,6 @@ public class filmAdapter extends CursorAdapter {
         public final TextView film_zhanr;
         public final TextView id_view_film;
         public final TextView film_seen;
-
-
         public ViewHolder(View view) {
             film_name = (TextView) view.findViewById(R.id.film_item_text);
             film_zhanr = (TextView) view.findViewById(R.id.film_item_zhanr);
@@ -27,7 +25,6 @@ public class filmAdapter extends CursorAdapter {
             film_seen = (TextView) view.findViewById(R.id.film_yes_see);
         }
     }
-
 
     public filmAdapter(Context context, Cursor c, int flags) {
         super(context, c, flags);

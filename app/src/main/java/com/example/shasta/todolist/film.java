@@ -16,7 +16,6 @@ import android.widget.ListView;
 
 import com.example.shasta.todolist.data.provider;
 
-
 public class film extends ActionBarActivity {
 
     @Override
@@ -32,23 +31,16 @@ public class film extends ActionBarActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_film, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -66,13 +58,9 @@ public class film extends ActionBarActivity {
                                  Bundle savedInstanceState) {
             db = new provider(getActivity());
             db.open();
-
             cursor = db.getAllDataFilm() ;
-
             filmadapter = new filmAdapter(getActivity(), cursor, 0);
-
             View rootView = inflater.inflate(R.layout.fragment_film, container, false);
-
             ListView listView = (ListView) rootView.findViewById(R.id.listViewFilm);
             listView.setAdapter(filmadapter);
             listView.setOnItemLongClickListener(this);
@@ -90,12 +78,9 @@ public class film extends ActionBarActivity {
                             etfilmzhanr.setText("");
                             cursor.requery();
                         }
-
                     });
-
             return rootView;
         }
-
 
         @Override
         public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {

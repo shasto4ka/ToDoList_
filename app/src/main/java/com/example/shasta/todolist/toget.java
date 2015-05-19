@@ -16,7 +16,6 @@ import android.widget.ListView;
 
 import com.example.shasta.todolist.data.provider;
 
-
 public class toget extends ActionBarActivity {
 
     @Override
@@ -30,32 +29,21 @@ public class toget extends ActionBarActivity {
         }
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_toget, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * A placeholder fragment containing a simple view.
-     */
     public static class togetFragment extends Fragment implements AdapterView.OnItemLongClickListener{
 
         public togetFragment() {
@@ -68,21 +56,15 @@ public class toget extends ActionBarActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-
             db = new provider(getActivity());
             db.open();
-
             cursor = db.getAllDatatoget();
             getadapter = new togetAdapter(getActivity(), cursor, 0);
-
             View rootView = inflater.inflate(R.layout.fragment_toget, container, false);
-
-
         ListView listView = (ListView) rootView.findViewById(R.id.listgoal);
         listView.setAdapter(getadapter);
         listView.setOnItemLongClickListener(this);
         final EditText goaladd = (EditText) rootView.findViewById(R.id.editgoal);
-
         Button button8 = (Button) rootView.findViewById(R.id.buttongoal);
         button8.setOnClickListener(
                 new View.OnClickListener() {
@@ -97,6 +79,7 @@ public class toget extends ActionBarActivity {
         });
             return rootView;
         }
+
         @Override
         public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
             cursor = (Cursor) parent.getItemAtPosition(position);
@@ -105,6 +88,5 @@ public class toget extends ActionBarActivity {
             cursor.requery();
             return true;
         }
-
     }
 }

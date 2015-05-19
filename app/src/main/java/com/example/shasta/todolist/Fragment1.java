@@ -22,17 +22,15 @@ import java.util.List;
  * Created by Shasta on 12.05.2015.
  */
 public class Fragment1 extends Fragment {
-
     ArrayAdapter<String> adapter;
     private final String LOG_TAG = MainActivity.class.getSimpleName();
 
-
     public Fragment1() {
     }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Add this line in order for this fragment to handle menu events.
         setHasOptionsMenu(true);
     }
 
@@ -42,15 +40,7 @@ public class Fragment1 extends Fragment {
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-   /*     if (id == R.id.action_refresh) {
-            FetchWeatherTask weatherTask = new FetchWeatherTask();
-            weatherTask.execute("94043");
-            return true;}*/
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -59,11 +49,8 @@ public class Fragment1 extends Fragment {
                                  Bundle savedInstanceState) {
             String[] lists = getResources().getStringArray(R.array.lists);
             List<String > list=new ArrayList<String>(Arrays.asList(lists));
-
             adapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1,list) ;
-
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-
             ListView listView = (ListView)rootView.findViewById(R.id.listView);
             listView.setAdapter(adapter) ;
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -110,15 +97,9 @@ public class Fragment1 extends Fragment {
                            startActivity(intent) ;
                            break;
                        }
-
                    }
-
                 }
             });
-
             return rootView;
         }
     }
-
-
-

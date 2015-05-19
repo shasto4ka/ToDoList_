@@ -19,7 +19,6 @@ public class passadapter extends CursorAdapter {
         public final TextView password;
         public final TextView id_pass;
 
-
         public ViewHolder(View view) {
             site = (TextView) view.findViewById(R.id.passtextsite);
             login = (TextView) view.findViewById(R.id.textpasslogin);
@@ -27,7 +26,6 @@ public class passadapter extends CursorAdapter {
             id_pass = (TextView) view.findViewById(R.id.textpassid);
         }
     }
-
 
     public passadapter(Context context, Cursor c, int flags) {
         super(context, c, flags);

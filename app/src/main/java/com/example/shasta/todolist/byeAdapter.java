@@ -16,13 +16,11 @@ public class byeAdapter extends CursorAdapter {
     public static class ViewHolder {
         public final TextView prod_view;
         public final TextView id_view;
-
         public ViewHolder(View view) {
             prod_view = (TextView) view.findViewById(R.id.bye_item);
             id_view = (TextView) view.findViewById(R.id.bye_item_hidden);
         }
     }
-
 
     public byeAdapter(Context context, Cursor c, int flags) {
         super(context, c, flags);

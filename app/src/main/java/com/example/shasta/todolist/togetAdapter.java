@@ -46,6 +46,5 @@ public class togetAdapter extends CursorAdapter {
         viewHolder.goal_yes.setText(item2);
         String item3 = cursor.getString(0);
         viewHolder.goal_id.setText(item3);
-
     }
 }
