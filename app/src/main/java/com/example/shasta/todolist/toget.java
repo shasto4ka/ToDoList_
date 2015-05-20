@@ -26,7 +26,7 @@ public class toget extends ActionBarActivity {
         setContentView(R.layout.activity_toget);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new togetFragment())
+                    .add(R.id.togetcontainer, new togetFragment())
                     .commit();
         }
     }

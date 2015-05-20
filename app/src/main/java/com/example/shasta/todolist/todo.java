@@ -33,7 +33,7 @@ public class todo extends ActionBarActivity {
         setContentView(R.layout.activity_todo);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new todoFragment())
+                    .add(R.id.todocontainer, new todoFragment())
                     .commit();
         }
     }

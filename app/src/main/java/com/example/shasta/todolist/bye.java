@@ -25,7 +25,7 @@ public class bye extends ActionBarActivity {
         setContentView(R.layout.activity_bye);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new byeFragment())
+                    .add(R.id.byecontainer, new byeFragment())
                     .commit();
         }
     }

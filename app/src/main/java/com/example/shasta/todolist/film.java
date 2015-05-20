@@ -26,7 +26,7 @@ public class film extends ActionBarActivity {
         setContentView(R.layout.activity_film);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new  filmFragment())
+                    .add(R.id.filmcontainer, new  filmFragment())
                     .commit();
         }
     }

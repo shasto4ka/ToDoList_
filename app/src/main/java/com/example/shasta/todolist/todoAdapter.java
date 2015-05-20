@@ -45,8 +45,8 @@ public class todoAdapter  extends CursorAdapter {
         ViewHolder viewHolder = (ViewHolder) view.getTag();
         int t = cursor.getInt(3) ;
         if (t==1)
-            view.setBackgroundColor(Color.parseColor("#00FF00"));
-        else {view.setBackgroundColor(Color.parseColor("#FF0000"));
+            view.setBackgroundColor(Color.parseColor("#ADFF2F"));
+        else {view.setBackgroundColor(Color.parseColor("#FA8072"));
         }
         String item1 = cursor.getString(1);
         viewHolder.todo_name.setText(item1);

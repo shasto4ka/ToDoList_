@@ -26,7 +26,7 @@ public class read extends ActionBarActivity {
         setContentView(R.layout.activity_read);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new readFragment())
+                    .add(R.id.readcontainer, new readFragment())
                     .commit();
         }
     }
