@@ -103,7 +103,7 @@ public class toget extends ActionBarActivity {
                         c = false;
                     if (cursor.getInt(2) == 1)
                         c = true;
-                    db.changeFilm(c, cursor.getInt(0));
+                    db.changetoget(c, cursor.getInt(0));
                     getadapter.notifyDataSetChanged();
                     cursor.requery();
                 }

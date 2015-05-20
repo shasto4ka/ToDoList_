@@ -122,6 +122,16 @@ public class provider{
         cv.put(contract.ReadEntry.COLUMN_YES , !yes) ;
         mdb.update(contract.ReadEntry.TABLE_NAME, cv, contract.ReadEntry._ID +"="+Integer.toString(id), null);
     }
+    public void changetodo(boolean yes, int id) {
+        ContentValues cv = new ContentValues();
+        cv.put(contract.todoEntry.COLUMN_YES , !yes) ;
+        mdb.update(contract.todoEntry.TABLE_NAME, cv, contract.todoEntry._ID +"="+Integer.toString(id), null);
+    }
+    public void changetoget(boolean yes, int id) {
+        ContentValues cv = new ContentValues();
+        cv.put(contract.togetEntry.COLUMN_YES , !yes) ;
+        mdb.update(contract.togetEntry.TABLE_NAME, cv, contract.togetEntry._ID +"="+Integer.toString(id), null);
+    }
 
     private class DBHelper extends SQLiteOpenHelper {
 

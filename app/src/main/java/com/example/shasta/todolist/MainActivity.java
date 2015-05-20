@@ -7,6 +7,8 @@ import android.view.MenuItem;
 
 public class MainActivity extends ActionBarActivity {
 
+    public final static String FILE_NAME = "filename";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -16,6 +18,7 @@ public class MainActivity extends ActionBarActivity {
                     .add(R.id.container, new Fragment1())
                     .commit();
         }
+     //   startService(new Intent(this, MyNotification.class));
     }
 
     @Override

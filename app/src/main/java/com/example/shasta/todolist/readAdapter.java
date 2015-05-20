@@ -2,10 +2,11 @@ package com.example.shasta.todolist;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.widget.CursorAdapter;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CursorAdapter;
 import android.widget.TextView;
 
 /**
@@ -44,6 +45,13 @@ public class readAdapter extends CursorAdapter {
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
         ViewHolder viewHolder = (ViewHolder) view.getTag();
+
+        int t = cursor.getInt(4) ;
+        if (t==1)
+        view.setBackgroundColor(Color.parseColor("#00FF00"));
+        else {view.setBackgroundColor(Color.parseColor("#FF0000"));
+        }
+
         String item1 = cursor.getString(1);
         viewHolder.book_name.setText(item1);
         String item2 = cursor.getString(2);
