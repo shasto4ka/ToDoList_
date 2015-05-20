@@ -51,6 +51,13 @@ public class toget extends ActionBarActivity {
         public togetFragment() {
         }
 
+        @Override
+        public void onDetach(){
+            super.onDetach() ;
+            db.close() ;
+            cursor.close() ;
+        }
+
         provider db;
         togetAdapter  getadapter;
         Cursor cursor;

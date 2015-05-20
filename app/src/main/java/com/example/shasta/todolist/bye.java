@@ -49,6 +49,12 @@ public class bye extends ActionBarActivity {
         public byeFragment() {
         }
 
+        @Override
+        public void onDetach(){
+            super.onDetach() ;
+            db.close() ;
+            cursor.close() ;
+        }
         provider db;
         byeAdapter byeadapter;
         Cursor cursor;
@@ -93,6 +99,9 @@ public class bye extends ActionBarActivity {
             cursor.requery();
             return true;
         }
+
+
     }
+
 }
 

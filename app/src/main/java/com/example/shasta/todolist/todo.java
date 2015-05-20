@@ -58,6 +58,13 @@ public class todo extends ActionBarActivity {
         public todoFragment() {
         }
 
+        @Override
+        public void onDetach(){
+            super.onDetach() ;
+            db.close() ;
+            cursor.close() ;
+        }
+
         public String parseStr(String str) {
             String str1[] = str.split("[\\p{Punct}\\s]");
             String str2;

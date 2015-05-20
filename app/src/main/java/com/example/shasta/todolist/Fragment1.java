@@ -23,7 +23,6 @@ import java.util.List;
  */
 public class Fragment1 extends Fragment {
     ArrayAdapter<String> adapter;
-    private final String LOG_TAG = MainActivity.class.getSimpleName();
 
     public Fragment1() {
     }
@@ -51,7 +50,8 @@ public class Fragment1 extends Fragment {
             List<String > list=new ArrayList<String>(Arrays.asList(lists));
             adapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1,list) ;
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-            ListView listView = (ListView)rootView.findViewById(R.id.listView);
+
+        ListView listView = (ListView)rootView.findViewById(R.id.listView);
             listView.setAdapter(adapter) ;
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -60,6 +60,7 @@ public class Fragment1 extends Fragment {
                     String forecast = adapter.getItem(position);
                     Toast.makeText(getActivity(), forecast, Toast.LENGTH_SHORT).show();
                     Intent intent;
+
                    switch (position) {
                        case 0: {
                            intent = new Intent(getActivity(), bye.class)

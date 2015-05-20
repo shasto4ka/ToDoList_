@@ -5,21 +5,33 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class MainActivity extends ActionBarActivity {
 
+public class MainActivity extends ActionBarActivity {
+    boolean mDualPane;
+    int mCurCheckPosition = 0;
     public final static String FILE_NAME = "filename";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.container, new Fragment1())
                     .commit();
         }
-     //   startService(new Intent(this, MyNotification.class));
+
+       /* {
+            mTwoPane = true;
+            if (savedInstanceState == null) {
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container , new bye.byeFragment() , "bla")
+                       .commit();
+            }
+        } else {
+            mTwoPane = false;
+        }
+*/
     }
 
     @Override

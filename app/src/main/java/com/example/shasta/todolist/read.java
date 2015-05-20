@@ -56,6 +56,13 @@ public class read extends ActionBarActivity {
         Cursor cursor;
 
         @Override
+        public void onDetach(){
+            super.onDetach() ;
+            db.close() ;
+            cursor.close() ;
+        }
+
+        @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             db = new provider(getActivity());

@@ -51,6 +51,13 @@ public class film extends ActionBarActivity {
         public filmFragment() {
         }
 
+        @Override
+        public void onDetach(){
+            super.onDetach() ;
+            db.close() ;
+            cursor.close() ;
+        }
+
         provider db;
         filmAdapter filmadapter;
         Cursor cursor;

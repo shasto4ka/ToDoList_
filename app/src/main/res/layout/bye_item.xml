@@ -3,7 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="55dp"
     android:orientation="horizontal"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="#ffdbffc8"
+    android:measureWithLargestChild="false">
 
     <TextView xmlns:android="http://schemas.android.com/apk/res/android"
 android:layout_width="match_parent"
@@ -14,8 +16,10 @@ android:id="@+id/bye_item_hidden"
     android:visibility="gone" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:text="New Text"
-        android:id="@+id/bye_item" />
+        android:id="@+id/bye_item"
+        android:textColor="#ff000000"
+        android:textSize="18dp" />
 </LinearLayout>

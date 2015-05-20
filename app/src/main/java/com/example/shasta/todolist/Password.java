@@ -24,7 +24,7 @@ public class Password extends ActionBarActivity {
         setContentView(R.layout.activity_password);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new passFragment())
+                    .add(R.id.passcontainer, new passFragment())
                     .commit();
         }
     }
@@ -47,6 +47,13 @@ public class Password extends ActionBarActivity {
     public static class passFragment extends Fragment implements AdapterView.OnItemLongClickListener{
 
         public passFragment() {
+        }
+
+        @Override
+        public void onDetach(){
+            super.onDetach() ;
+            db.close() ;
+            cursor.close() ;
         }
 
         provider db;

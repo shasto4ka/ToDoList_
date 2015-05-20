@@ -7,13 +7,17 @@
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:text="New Text"
-        android:id="@+id/film_item_text" />
+        android:id="@+id/film_item_text"
+        android:textColor="#ff000000"
+        android:textSize="25dp" />
 
     <TextView
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:text="New Text"
-        android:id="@+id/film_item_zhanr" />
+        android:id="@+id/film_item_zhanr"
+        android:textColor="#ff000000"
+        android:textSize="25dp" />
 
     <TextView
         android:layout_width="wrap_content"
